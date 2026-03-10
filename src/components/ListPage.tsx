@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import { useParams, Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, MessageCircle, Table, List, MapPin, X } from "lucide-react";

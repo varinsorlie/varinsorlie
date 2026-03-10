@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
 import { createContext, useContext, useEffect, useState } from "react";

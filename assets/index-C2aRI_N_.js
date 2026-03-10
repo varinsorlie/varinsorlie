@@ -20,7 +20,7 @@ Please change the parent <Route path="${j}"> to <Route path="${j==="/"?"*":`${j}
       <!doctype html>
       <html>
         <head>
-          <title>Resume</title>
+          <title>Vårin</title>
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <style>html,body{height:100%;margin:0}iframe{border:0;width:100%;height:100vh}</style>
         </head>

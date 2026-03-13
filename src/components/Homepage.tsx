@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { FileText, Github, Mail, Linkedin } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import { allLists } from "./list-data";
 import myImage1 from "../assets/IMG_5190.jpg"
 import myImage2 from "../assets/IMG_5274.jpeg"
 import myImage3 from "../assets/IMG_4934.jpeg"
 import myImage4 from "../assets/IMG_4651.jpeg"
-import cv from "../assets/cv_march26.pdf"
+
 import { useLanguage } from "./Layout";
 import { BouncyAvatar } from "./BouncyAvatar";
 

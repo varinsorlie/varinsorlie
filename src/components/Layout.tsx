@@ -1,5 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import { createContext, useContext, useEffect, useState } from "react";
 import NavItem from "./NavItem";

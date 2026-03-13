@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, MessageCircle, Table, List, MapPin, X } from "lucide-react";
@@ -66,7 +66,7 @@ export function ListPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-12 md:py-20">
+    <div className="max-w-2xl mx-auto px-1 py-1 md:py-1">
       {/* Hero Image */}
       <motion.div
         initial={{ opacity: 0, scale: 1.02 }}
@@ -355,6 +355,7 @@ export function ListPage() {
                       <div
                         key={col.key}
                         className="flex items-center justify-between text-[0.8rem]"
+                        
                       >
                         <span className="text-muted-foreground">
                           {col.emoji} {col.label}

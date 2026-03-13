@@ -1,21 +1,21 @@
-
-
 import { Link } from "react-router-dom";
-import { ArrowUpRight, FileText, Github, Mail, Linkedin } from "lucide-react";
+import { FileText, Github, Mail, Linkedin } from "lucide-react";
 import { motion } from "motion/react";
 import { allLists } from "./list-data";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 import myImage1 from "../assets/IMG_5190.jpg"
 import myImage2 from "../assets/IMG_5274.jpeg"
 import myImage3 from "../assets/IMG_4934.jpeg"
 import myImage4 from "../assets/IMG_4651.jpeg"
 import cv from "../assets/cv_march26.pdf"
 import { useLanguage } from "./Layout";
+import { BouncyAvatar } from "./BouncyAvatar";
 
-const PROFILE_IMAGE = [myImage1, myImage2, myImage3, myImage4]
 
 
 export default function Home() {
+
+  const PROFILE_IMAGE = [myImage1, myImage2, myImage3, myImage4]
+  
   const { t } = useLanguage();
   const openPdfInNewWindow = (e: any, url: string) => {
     e?.preventDefault();
@@ -39,65 +39,95 @@ export default function Home() {
     w.document.close();
   };
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <section className="flex-1 flex items-center justify-center px-6 py-20 md:py-28">
+    <div className="min-h-screen flex flex-col items-center px-6 py-16">
+
         <div className="max-w-xl w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Avatar */}
-           <div className="mb-8">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xs sm:max-w-none">
-                {PROFILE_IMAGE.map((src, idx) => (
-                  <div
-                    key={idx}
-                    className="w-full aspect-square rounded-full overflow-hidden border-2 border-border"
-                  >
-                    <ImageWithFallback
-                      src={src}
-                      alt={`profile-${idx}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+         <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="text-center max-w-xl"
+      >
+          
+                
+        <h1
+          className="text-[3rem] mb-4"
+          style={{ fontFamily: "'DM Serif Display', serif" }}
+        >
+          {t("greeting")}
+        </h1>
+
+        <p className="text-muted-foreground italic mb-10">
+           {t("intro")}
+        </p>
+
+      {/* Images */}
+      <div className="flex justify-center gap-6 mb-16 h-[120px] items-end">
+        {PROFILE_IMAGE.map((src, i) => (
+          <BouncyAvatar key={i} src={src} />
+        ))}
+      </div>
+      </motion.div>
+
+
+
+      {/* Divider */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        <div className="border-t border-border pt-5 mb-5 text-center">
+        </div>
+        <p className="text-left text-muted-foreground text-[0.8rem] mb-8 tracking-widest uppercase mb-2">
+          {t("curatedLists")}
+        </p>
+      </motion.div>
+    
+
+
+      {/* RECENT POSTS */}
+      <div className="w-full max-w-5xl">
+      <div className="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
+
+          {allLists.map((list) => (
+            <Link
+              key={list.slug}
+              to={`/${list.slug}`}
+              className="group min-w-[200px] rounded-2xl border border-border p-4 hover:shadow-md transition"
+            >
+              <div className="aspect-video rounded-xl overflow-hidden mb-3">
+              <img
+                src={list.image}
+                className="w-full h-full object-cover group-hover:scale-105 transition"
+              />
             </div>
 
-             <h1
-              className="text-left text-[2.5rem] md:text-[3.2rem] tracking-tight mb-4"
-              style={{
-                fontFamily: "'DM Serif Display', serif",
-                lineHeight: 1.1,
-              }}
-            >
-              {t("greeting")}
-            </h1>
-            <p
-              className="text-left tracking-tight mb-4 text-muted-foreground"
-              style={{ lineHeight: 1.7 }}
-            >
-              {t("subtitle")}
-            </p>
-            <p
-              className="text-left text-muted-foreground mb-10 italic"
-              style={{ lineHeight: 1.7 }}
-            >
-              {t("intro")}
-            </p>
-          </motion.div>
+              <h3 className="text-sm mb-1">{list.title}</h3>
 
-          {/* Quick Links */}
+              <p className="text-xs text-muted-foreground">
+                {list.items.length} picks
+              </p>
+
+              <span className="inline-block mt-3 text-xl">
+                {list.emoji}
+              </span>
+            </Link>
+          ))}
+
+        </div>
+      </div>
+
+
+         
+     {/* Quick Links */}
        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="flex flex-wrap gap-3 mb-16"
+            className="flex flex-wrap gap-5 mb-16 pt-5 justify-center"
           >
             {[
-             { label: t("Resume"), icon: FileText, href: cv },
               { label: t("Github"), icon: Github, href: "https://github.com/varinsorlie" },
               { label: t("Linkedin"), icon: Linkedin, href: "https://www.linkedin.com/in/vårin-sørlie" },
               { label: t("Email"), icon: Mail, href: "mailto:vaarinso@uio.no" },
@@ -117,63 +147,6 @@ export default function Home() {
               </a>
             ))}
           </motion.div>
-
-          {/* Divider */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-           <p className="text-muted-foreground text-[0.8rem] tracking-widest uppercase mb-2">
-              {t("curatedLists")}
-           </p>
-          </motion.div>
-
-          {/* List Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-          >
-            {allLists.map((list, i) => (
-              <motion.div
-                key={list.slug}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + i * 0.05, duration: 0.4 }}
-              >
-                <Link
-                  to={`/${list.slug}`}
-                  className="group relative flex items-start gap-4 p-4 rounded-xl border border-border hover:border-foreground/20 transition-all duration-300 hover:shadow-sm overflow-hidden"
-                >
-                  {/* Subtle color wash on hover */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ backgroundColor: list.color + "15" }}
-                  />
-                  <span
-                    className="relative flex items-center justify-center w-10 h-10 rounded-lg shrink-0 text-[1.2rem]"
-                    style={{ backgroundColor: list.color + "40" }}
-                  >
-                    {list.emoji}
-                  </span>
-                  <div className="relative flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[0.85rem] truncate">
-                        {list.title}
-                      </span>
-                      <ArrowUpRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                    </div>
-                    <span className="text-[0.75rem] text-muted-foreground">
-                      {list.items.length} picks
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Fun sign-off */}
           {/* <motion.div
             initial={{ opacity: 0 }}
@@ -189,7 +162,7 @@ export default function Home() {
             </p>
           </motion.div> */}
         </div>
-      </section>
+      {/* </section> */}
 
       {/* Footer */}
        <footer className="px-6 py-8 text-center">
@@ -197,6 +170,7 @@ export default function Home() {
           {t("footer")}
         </p>
       </footer>
+
     </div>
   );
 }

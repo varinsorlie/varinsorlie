@@ -29,11 +29,11 @@ export interface ListData {
 export const allLists: ListData[] = [
   {
     slug: "studentkafeer",
-    title: "Studentvennlige Kafeer i Oslo",
+    title: "Studentvennlige Kafeer",
     subtitle: "",//"For de dagene det ikke frister å sitte hjemme eller på lesesalen.",
     emoji: "☕",
     color: "#C4B5A0",
-    image: "https://images.unsplash.com/photo-1753613648131-f8189bf05bcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwY2FmZSUyMHN0dWR5aW5nJTIwbGFwdG9wJTIwY29mZmVlfGVufDF8fHx8MTc3MjgzMzA3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://images.unsplash.com/photo-1540206395-68808572332f",//"https://images.unsplash.com/photo-1753613648131-f8189bf05bcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwY2FmZSUyMHN0dWR5aW5nJTIwbGFwdG9wJTIwY29mZmVlfGVufDF8fHx8MTc3MjgzMzA3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     story: "For de dagene det ikke frister å sitte hjemme eller på lesesalen.",//"Som studenter og trofaste kaffeelskere har vi notert oss noen favoritter for de dagene det ikke frister like mye å sitte hjemme eller på lesesalen. For at de skal nå opp på vår liste, kreves det en eller flere av følgende: trådløst nett, studentrabatt, godt mat og drikke, samt lademuligheter. Tekst & foto: Lene Myrum Haugen og Mari F. Karlsen.",
     closingNote: "PS! Ta med studentbevis — det lønner seg! Sentralen, Cafe Sør, Kulturhuset og Fuglen gir alle studentrabatt.",
     tableColumns: [

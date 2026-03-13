@@ -2,17 +2,18 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
 import { createContext, useContext, useEffect, useState } from "react";
-
+import NavItem from "./NavItem";
+import cv from "../assets/cv_march26.pdf"
 
 type Locale = "en" | "no";
 
 const translations: Record<Locale, Record<string, string>> = {
   en: {
-    greeting: "Hey, I'm Vårin",
+    greeting: "Vårin Sørlie",
     subtitle: "Designer, developer, and professional over-thinker.",
     intro:
       "This site is part portfolio, part personal encyclopedia of opinions. Welcome!",
-    curatedLists: "My lists",
+    curatedLists: "Recently posted",
     resume: "Resume",
     github: "GitHub",
     linkedin: "LinkedIn",
@@ -20,11 +21,11 @@ const translations: Record<Locale, Record<string, string>> = {
     footer: "Made with care & caffeine",
   },
   no: {
-    greeting: "Hei, jeg er Vårin",
+    greeting: "Vårin Sørlie",
     subtitle: "Designer, utvikler, og livsnyter.",
     intro:
       "Dette er litt som en portfølje, og litt som en samling av tilfeldige ting som interesserer meg. Velkommen!",
-    curatedLists: "Mine lister",
+    curatedLists: "Nylig postet",
     resume: "CV",
     github: "GitHub",
     linkedin: "LinkedIn",
@@ -68,12 +69,41 @@ export function Layout() {
   return (
    <LanguageContext.Provider value={{ locale, setLocale, t }}>
     
-      
+    
+       {/* NAV */}
+      <div className="flex flex-col items-center mb-16">
+          <div className="flex gap-3">
+          <div className="flex gap-6">
+          <NavItem to="/">Home</NavItem>
+          <a href={cv} target="_blank" className="flex flex-col items-center gap-2">
+              <div className="h-[2px] w-8 opacity-0" />
+              <div className="nav-pill">Resume</div>
+          </a>
+          <NavItem to="/blog">Blog</NavItem>
+          </div>
+          
 
-      <main>
+        {/* TOP-RIGTH BUTTON -language  */}
+       {/* "flex items-center gap-2 bg-background/70 backdrop-blur rounded-full border border-border px-2 py-1"> */}
+        <div className="fixed top-9 right-8 z-50">
+          <div className= "nav-pill"> 
+            <button
+              aria-label="Toggle language"
+              onClick={() => setLocale(locale === "en" ? "no" : "en")}
+              className="text-[0.85rem] font-medium  rounded-full hover:bg-foreground/5 transition"
+            >
+              {locale === "en" ? "NO" : "EN"}
+            </button>
+          </div>
+        </div>
+            </div>
+            </div>
+            
+
+      {/* <main> */}
         
-        <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
-        {!isHome && (
+        {/* <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}> */}
+        {/* {!isHome && (
           // TOP-BAR
           <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
             <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -92,19 +122,8 @@ export function Layout() {
               </Link>
             </div>
           </header>
-        )}
-        {/* TOP-RIGTH BUTTON -language  */}
-        <div className="fixed top-2 right-4 z-50">
-          <div className="flex items-center gap-2 bg-background/70 backdrop-blur rounded-full border border-border px-2 py-1">
-            <button
-              aria-label="Toggle language"
-              onClick={() => setLocale(locale === "en" ? "no" : "en")}
-              className="text-[0.85rem] font-medium px-3 py-1 rounded-full hover:bg-foreground/5 transition"
-            >
-              {locale === "en" ? "NO" : "EN"}
-            </button>
-          </div>
-        </div>
+        )} */}
+        
         
         <motion.main
           key={location.pathname}
@@ -115,8 +134,8 @@ export function Layout() {
         >
           <Outlet />
         </motion.main>
-       </div>
-      </main>
+       {/* </div> */}
+      {/* </main> */}
     </LanguageContext.Provider>
   );
 }

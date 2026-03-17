@@ -33,7 +33,7 @@ export const allLists: ListData[] = [
     subtitle: "",//"For de dagene det ikke frister å sitte hjemme eller på lesesalen.",
     emoji: "☕",
     color: "#C4B5A0",
-    image: "https://images.unsplash.com/photo-1540206395-68808572332f",//"https://images.unsplash.com/photo-1753613648131-f8189bf05bcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwY2FmZSUyMHN0dWR5aW5nJTIwbGFwdG9wJTIwY29mZmVlfGVufDF8fHx8MTc3MjgzMzA3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://images.unsplash.com/photo-1558210834-473f430c09ac?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",//"https://images.unsplash.com/photo-1753613648131-f8189bf05bcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwY2FmZSUyMHN0dWR5aW5nJTIwbGFwdG9wJTIwY29mZmVlfGVufDF8fHx8MTc3MjgzMzA3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     story: "For de dagene det ikke frister å sitte hjemme eller på lesesalen.",//"Som studenter og trofaste kaffeelskere har vi notert oss noen favoritter for de dagene det ikke frister like mye å sitte hjemme eller på lesesalen. For at de skal nå opp på vår liste, kreves det en eller flere av følgende: trådløst nett, studentrabatt, godt mat og drikke, samt lademuligheter. Tekst & foto: Lene Myrum Haugen og Mari F. Karlsen.",
     closingNote: "PS! Ta med studentbevis — det lønner seg! Sentralen, Cafe Sør, Kulturhuset og Fuglen gir alle studentrabatt.",
     tableColumns: [
@@ -63,7 +63,7 @@ export const allLists: ListData[] = [
     subtitle: "",//"55 steder med halvliter under 100 kroner. Oppdatert for 2024.",
     emoji: "🍺",
     color: "#F0D48B",
-    image: "https://images.unsplash.com/photo-1653246894021-d6b2dd5de125?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvc2xvJTIwYmFyJTIwYmVlciUyMGdvbGRlbiUyMGhvdXJ8ZW58MXx8fHwxNzcyODMyNzYwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://plus.unsplash.com/premium_photo-1695285406073-0424d330c075?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     story: "55 steder med halvliter under 100 kroner. Oppdatert for 2024.",//"88 kroner halvliteren i Molde — sa VG Nett om Festivalsommeren. Men hva med Oslo? Prisene er fra 2024, og 0,4 er omregnet til pris per halvliter. Sporadisk ajourføring: 2025 — Heim i Ullevålsveien har nå 0,6 til kr 99 på torsdag–lørdag.",
     closingNote: "Prisene endrer seg stadig. Sjekk gjerne før du går — og nyt sola mens den varer.",
     tableColumns: [
@@ -144,7 +144,7 @@ export const allLists: ListData[] = [
     subtitle: "",//"Places I keep going back to, no matter what.",
     emoji: "🍽️",
     color: "#E8D5C4",
-    image: "https://images.unsplash.com/photo-1574966739987-65e38db0f7ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwZGlubmVyJTIwdGFibGUlMjBjYW5kbGVsaWdodHxlbnwxfHx8fDE3NzI4MzA0NTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     story: "Kommer snart ...",//"I once ate at 4 restaurants in a single day trying to settle an argument with a friend about which had the best pasta. Nobody won — my stomach lost. These are the survivors of years of enthusiastic (and occasionally reckless) dining.",
     closingNote: "",//"If you only try one, make it The Golden Fork. And if you disagree, I'd love to argue about it over dinner.",
     tableColumns: [
@@ -169,11 +169,11 @@ export const allLists: ListData[] = [
   },
   {
     slug: "Kaffe",
-    title: "Byens beste kaffe",
+    title: "Kaféer i Seoul",
     subtitle: " ",//"Tested extensively with my laptop and a flat white.",
     emoji: "☕",
     color: "#D4C5A9",
-    image: "https://images.unsplash.com/photo-1689168053250-080ce35d10cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3p5JTIwY2FmZSUyMGxhcHRvcCUyMGNvZmZlZXxlbnwxfHx8fDE3NzI4MzA0NTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "https://images.unsplash.com/photo-1622517806875-92161d3fd09d?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     story: "Kommer snart ...",//"My criteria: WiFi speed above 50mbps, at least two power outlets per table, not too loud, not too quiet, and — this is non-negotiable — good coffee. I've been kicked out of exactly one café for staying too long. It didn't make the list.",
     closingNote: " ",//"Pro tip: always buy a second drink if you've been there more than 2 hours. Be a good café citizen.",
     tableColumns: [

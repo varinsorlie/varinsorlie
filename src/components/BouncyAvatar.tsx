@@ -34,8 +34,15 @@ export function BouncyAvatar({ src }: { src: string }) {
   return (
     <motion.div
       onHoverStart={launch}
+      onTapStart={launch}
       animate={{ y: position.current }}
-      className="w-20 h-20 rounded-full overflow-hidden border border-border"
+      className="w-16 h-16 
+      sm:w-20 sm:h-20
+      shrink-0
+      rounded-full 
+      overflow-hidden 
+      border border-border 
+      cursor-pointer gap-4"
     >
       <img src={src} className="w-full h-full object-cover" />
     </motion.div>

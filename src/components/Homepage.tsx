@@ -62,7 +62,9 @@ export default function Home() {
         </p>
 
       {/* Images */}
-      <div className="flex justify-center gap-6 mb-16 h-[120px] items-end">
+      <div className="grid grid-cols-2 gap-4 place-items-center
+  sm:flex sm:justify-center sm:gap-6
+  mb-16">
         {PROFILE_IMAGE.map((src, i) => (
           <BouncyAvatar key={i} src={src} />
         ))}

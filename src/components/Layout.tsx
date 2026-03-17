@@ -68,35 +68,34 @@ export function Layout() {
   return (
    <LanguageContext.Provider value={{ locale, setLocale, t }}>
     
-    
-       {/* NAV */}
-      <div className="flex flex-col items-center mb-16">
-          <div className="flex gap-3">
-          <div className="flex gap-6">
-          <NavItem to="/">Home</NavItem>
-          <a href={cv} target="_blank" className="flex flex-col items-center gap-2">
-              <div className="h-[2px] w-8 opacity-0" />
-              <div className="nav-pill">Resume</div>
-          </a>
-          <NavItem to="/blog">Blog</NavItem>
-          </div>
-          
+     {/* NAV */}
+      <div className="relative flex flex-col items-center mb-5">
 
-        {/* TOP-RIGTH BUTTON -language  */}
-       {/* "flex items-center gap-2 bg-background/70 backdrop-blur rounded-full border border-border px-2 py-1"> */}
-        <div className="fixed top-9 right-8 z-50">
-          <div className= "nav-pill"> 
+        {/* Navigation row */}
+        <div className="flex gap-6 whitespace-nowrap">
+          <NavItem to="/">Home</NavItem>
+
+          <a href={cv} target="_blank" className="flex flex-col items-center gap-2">
+            <div className="h-[2px] w-8 opacity-0" />
+            <div className="nav-pill">Resume</div>
+          </a>
+
+          <NavItem to="/blog">Blog</NavItem>
+        </div>
+
+        {/* Language button */}
+        <div className="sm:absolute sm:right-0 sm:top-2.5">
+          <div className="nav-pill">
             <button
               aria-label="Toggle language"
               onClick={() => setLocale(locale === "en" ? "no" : "en")}
-              className="text-[0.85rem] font-medium  rounded-full hover:bg-foreground/5 transition"
+              className="text-[0.85rem] font-medium rounded-full hover:bg-foreground/5 transition"
             >
               {locale === "en" ? "NO" : "EN"}
             </button>
           </div>
         </div>
-            </div>
-            </div>
+      </div>
             
 
       {/* <main> */}

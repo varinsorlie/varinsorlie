@@ -5,12 +5,13 @@
 @source '../**/*.{js,ts,jsx,tsx}';
 
 .nav-pill{
-  @apply px-4 py-2 rounded-full border border-border text-sm hover:bg-black hover:text-white transition;
+  @apply px-4 py-2 bg-white rounded-full border border-border text-sm hover:bg-black hover:text-white transition;
 }
 
 .footer-pill{
   @apply flex items-center gap-2 px-4 py-2 rounded-full border border-border text-xs hover:bg-black hover:text-white transition;
 }
+
 
 /* .no-scrollbar::-webkit-scrollbar {
   display: none;

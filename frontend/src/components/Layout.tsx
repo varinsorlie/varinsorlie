@@ -69,22 +69,24 @@ export function Layout() {
    <LanguageContext.Provider value={{ locale, setLocale, t }}>
     
      {/* NAV */}
-      <div className="relative flex flex-col items-center mb-5">
+      <div className="relative flex flex-col items-center mb-5 pt-5">
 
         {/* Navigation row */}
-        <div className="flex gap-6 whitespace-nowrap">
+        <div className="fixed bg-transparent flex gap-2 whitespace-nowrap z-50">
           <NavItem to="/">Home</NavItem>
 
-          <a href={cv} target="_blank" className="flex flex-col items-center gap-2">
-            <div className="h-[2px] w-8 opacity-0" />
-            <div className="nav-pill">Resume</div>
-          </a>
+          {/* <a href={cv} target="_blank" className="flex flex-col items-center gap-2">
+            <div className="h-[2px] w-8 opacity-0" /> */}
+            {/* <div className="nav-pill">Resume</div> */}
+            <NavItem to="/cvPage">CV</NavItem>
+          {/* </a> */}
 
           <NavItem to="/blog">Blog</NavItem>
+          <NavItem to="/travelPage">Travel</NavItem>
         </div>
 
         {/* Language button */}
-        <div className="sm:absolute sm:right-0 sm:top-2.5">
+        {/* <div className=" sm:right-5 sm:top-2.5 pt-5 fixed bg-transparent flex gap-2 whitespace-nowrap z-50">
           <div className="nav-pill">
             <button
               aria-label="Toggle language"
@@ -94,7 +96,7 @@ export function Layout() {
               {locale === "en" ? "NO" : "EN"}
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
             
 

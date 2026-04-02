@@ -1,0 +1,291 @@
+import { useState, useEffect, useRef } from "react"
+
+type Category = "all" | "work" | "edu" | "side" | "award"
+
+interface CVEntry {
+  role: string
+  org: string
+  desc: string
+  cat: Exclude<Category, "all">
+  tags?: string[]
+}
+
+interface CVGroup {
+  year: string
+  entries: CVEntry[]
+}
+
+interface Skill {
+  name: string
+  level: number
+}
+
+const CV_DATA: CVGroup[] = [
+  {
+    year: "2026",
+    entries: [
+      {
+        role: "Software Engineer",
+        org: "Pastport, Oslo",
+        desc: "Full-stack developer of PastPort App. Implementing the database connected to the app. Implemented the design in front-end.",
+        cat: "work",
+        tags: ["Figma", "Ghost", "React", "Typescript"],
+      },
+        {
+        role: "varinsorlie.github.io — Personal Site",
+        org: "Self-initiated",
+        desc: "Designed and built this very site — part portfolio, part blog, part treasure map.",
+        cat: "side",
+        tags: ["MongoDB","React", "TypeScript", "CSS", "Tailwind"],
+      },
+    ],
+  },
+  {
+    year: "2025",
+    entries: [
+        {
+        role: "MS in Informatics: Programming and System Architecture",
+        org: "University of Oslo",
+        desc: "Started on my masters in system architecture. I will graduate summer 2027",
+        cat: "edu",
+        tags: ["AI", "Programming", "Energy informatics","Platform technology", ],
+      },
+      {
+        role: "Software Engineer",
+        org: "University of Oslo",
+        desc: "Full-stack developer of an interactive game for students. Created an algorithm to create an adaptive task-collector for the game.",
+        cat: "work",
+        tags: ["React", "Python", "Django", "Typescript","Figma"],
+      },
+    {
+        role: "BS in Informatics: design, use and interaction",
+        org: "University of Oslo",
+        desc: "",
+        cat: "edu",
+        tags: ["HCI", "UX design",],
+      },
+    ],
+  },
+  {
+    year: "2024",
+    entries: [
+      {
+        role: "Exchange Ambassador",
+        org: " University of Oslo",
+        desc: "Represented UiO in Asia by arranging and speaking at exchange events.",
+        cat: "work",
+        tags: ["Public speaking", "Branding"],
+      },
+      {
+        role: "Assistant at hostpital",
+        org: " Sykehuset Innlandet - Reinsvoll sykehus",
+        desc: "Summer substitute at psychiatric hospital for the last two summers. Took care of patients by encouraging them to to activities, and assisted doctors and nurses in their daily tasks at the hospitals.",
+        cat: "work",
+      },
+    ],
+  },
+  {
+    year: "2021",
+    entries: [
+      {
+        role: "History 1-year-course",
+        org: "University of Oslo",
+        desc: "",
+        cat: "edu",
+        tags: ["History", "Society",],
+      },
+    ],
+  },
+]
+
+const SKILLS: Skill[] = [
+  { name: "Figma", level: 95 },
+  { name: "React", level: 78 },
+  { name: "TypeScript", level: 72 },
+  { name: "UX Research", level: 88 },
+  { name: "CSS / Animation", level: 85 },
+  { name: "Branding", level: 80 },
+]
+
+const FILTERS: { key: Category; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "work", label: "Work" },
+  { key: "edu", label: "Education" },
+  { key: "side", label: "Projects" },
+  
+]
+
+const BADGE: Record<Exclude<Category, "all">, string> = {
+  work:  "bg-orange-100 text-orange-800",
+  edu:   "bg-green-100 text-green-800",
+  award: "bg-purple-100 text-purple-800",
+  side:  "bg-blue-100 text-blue-800",
+}
+
+const BADGE_LABEL: Record<Exclude<Category, "all">, string> = {
+  work: "Work", edu: "Education", award: "Award", side: "Project",
+}
+
+// Hook: fires when element enters viewport
+function useInView(options?: IntersectionObserverInit) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    if (!ref.current) return
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setInView(true); obs.disconnect() }
+    }, options)
+    obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+// Animated card
+function TimelineCard({ entry, index }: { entry: CVEntry; index: number }) {
+  const { ref, inView } = useInView({ threshold: 0.15 })
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${index * 80}ms` }}
+      className={`
+        group relative bg-white border border-black/10 rounded-2xl p-5
+        transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-0.5
+        ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}
+      `}
+    >
+      {/* dot on timeline */}
+      <span className="absolute -left-[22px] top-5 w-2.5 h-2.5 rounded-full border-2 border-black/20 bg-[#f5f0e8] group-hover:bg-[#c94b1f] group-hover:border-[#c94b1f] transition-colors" />
+
+      <div className="flex items-start justify-between gap-3 mb-1">
+        <p className="font-serif text-[1.1rem] leading-snug tracking-tight">{entry.role}</p>
+        <span className={`text-[0.62rem] tracking-widest uppercase px-2.5 py-1 rounded-full shrink-0 font-medium ${BADGE[entry.cat]}`}>
+          {BADGE_LABEL[entry.cat]}
+        </span>
+      </div>
+
+      <p className="text-sm italic text-black/50 mb-2">{entry.org}</p>
+      <p className="text-sm leading-relaxed text-black/60 max-w-lg">{entry.desc}</p>
+
+      {entry.tags && (
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {entry.tags.map(t => (
+            <span key={t} className="text-[0.68rem] bg-[#ede8dc] text-black/70 px-2 py-0.5 rounded">{t}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Skill bar
+function SkillBar({ skill, index }: { skill: Skill; index: number }) {
+  const { ref, inView } = useInView({ threshold: 0.3 })
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${index * 60}ms` }}
+      className={`bg-white border border-black/10 rounded-xl p-4 transition-all duration-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+    >
+      <p className="text-sm font-semibold mb-2.5">{skill.name}</p>
+      <div className="h-[3px] bg-[#ede8dc] rounded-full overflow-hidden">
+        <div
+          className="h-full bg-[#c94b1f] rounded-full transition-all duration-1000 ease-out"
+          style={{ width: inView ? `${skill.level}%` : "0%" }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default function CVPage() {
+  const [active, setActive] = useState<Category>("all")
+  const { ref: lineRef, inView: lineIn } = useInView({ threshold: 0.05 })
+
+  const visibleGroups = CV_DATA.filter(g =>
+    active === "all" || g.entries.some(e => e.cat === active)
+  )
+
+  return (
+    <div className="min-h-screen text-[#0d0d0d]"
+    style={{ background: "var(--background)" }}>
+
+      {/* HEADER */}
+      {/* <header className="max-w-3xl mx-auto px-6 pt-20 pb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-black/10">
+        <h1 className="font-serif text-[clamp(3rem,10vw,6rem)] leading-[.88] tracking-[-0.04em] italic">
+          Vårin<br /><em className="text-[#c94b1f]">Sørlie</em>
+        </h1>
+        <div className="flex flex-col gap-1 sm:text-right text-sm">
+          <p className="text-black/40 tracking-wide">Oslo, Norge</p>
+          <a href="mailto:hei@varin.no" className="text-[#c94b1f] hover:opacity-80 transition">hei@varin.no</a>
+          <a href="#" className="text-black/40 hover:text-black transition">linkedin.com/in/varin</a>
+          <a href="#" className="text-black/40 hover:text-black transition">github.com/varin</a>
+        </div>
+      </header> */}
+
+      {/* FILTERS */}
+      <div className="max-w-3xl mx-auto px-6 mt-6 flex gap-2 flex-wrap">
+        {FILTERS.map(f => (
+          <button
+            key={f.key}
+            onClick={() => setActive(f.key)}
+            className={`text-[0.72rem] tracking-[.12em] uppercase border rounded-full px-4 py-1.5 transition-all duration-200 cursor-pointer
+              ${active === f.key
+                ? "bg-[#0d0d0d] text-[#f5f0e8] border-[#0d0d0d]"
+                : "border-black/15 text-black/50 hover:border-black/40 hover:text-black"
+              }`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* TIMELINE */}
+      <div className="max-w-3xl mx-auto px-6 mt-10 mb-16 relative">
+
+        {/* vertical line */}
+        <div
+          ref={lineRef}
+          style={{
+            transformOrigin: "top",
+            transform: lineIn ? "scaleY(1)" : "scaleY(0)",
+            transition: "transform 1.2s cubic-bezier(.16,1,.3,1)",
+          }}
+          className="absolute left-[calc(1.5rem+115px)] top-0 bottom-0 w-px bg-black/10"
+        />
+
+        {visibleGroups.map(group => {
+          const entries = active === "all"
+            ? group.entries
+            : group.entries.filter(e => e.cat === active)
+          if (!entries.length) return null
+          return (
+            <div key={group.year} className="relative mb-12">
+              {/* year label */}
+              <span className="absolute left-0 top-0.5 w-[110px] text-right pr-6 font-serif italic text-sm text-black/40">
+                {group.year}
+              </span>
+              {/* cards */}
+              <div className="ml-[130px] flex flex-col gap-3">
+                {entries.map((entry, i) => (
+                  <TimelineCard key={`${group.year}-${i}`} entry={entry} index={i} />
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* SKILLS */}
+      <div className="max-w-3xl mx-auto px-6 pb-24">
+        <p className="text-[0.68rem] tracking-[.22em] uppercase text-black/35 mb-4 pt-6 border-t border-black/10">
+          Skills & tools
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {SKILLS.map((s, i) => <SkillBar key={s.name} skill={s} index={i} />)}
+        </div>
+      </div>
+
+    </div>
+  )
+}

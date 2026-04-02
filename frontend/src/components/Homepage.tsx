@@ -48,57 +48,54 @@ export default function Home() {
 
   
   return (
-    <div className="min-h-screen flex flex-col items-center px-6 py-16">
+<div className="min-h-screen">
 
-        <div className="max-w-xl w-full">
-         <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
-        className="text-center max-w-xl"
+  {/* INTRO */}
+  <section 
+  className="sticky top-0 z-10 py-20"
+  style={{ background: "var(--background)" }}
+>
+  <div className="max-w-xl mx-auto px-6 text-center">
+      {/* your intro content */}
+      <h1
+        className="text-[3rem] mb-4"
+        style={{ fontFamily: "'Gasoek One', serif", color: "var(--font-color)"}}
       >
-          
-                
-        <h1
-          className="text-[3rem] mb-4"
-          style={{ fontFamily: "'DM Serif Display', serif" }}
-        >
-          {t("greeting")}
-        </h1>
-
-        <p className="text-muted-foreground italic mb-10">
-           {t("intro")}
-        </p>
-
-      {/* Images */}
+        {t("greeting")}
+      </h1>
       <div className="grid grid-cols-2 gap-4 place-items-center
-  sm:flex sm:justify-center sm:gap-6
-  mb-16">
+                      sm:flex sm:justify-center sm:gap-6 mb-16">
         {PROFILE_IMAGE.map((src, i) => (
           <BouncyAvatar key={i} src={src} />
         ))}
       </div>
-      </motion.div>
 
+      <p className="text-muted-foreground italic mb-10"
+          style={{color: "var(--font-color)"}}>
+          {t("intro")}
+      </p>
+    </div>
+  </section>
 
-
-      {/* Divider */}
-      <motion.div
+  {/* RECENT POSTS */}
+  <section 
+   className="sticky top-0 z-20 py-20"
+  style={{ background: "var(--background2)" }}
+>
+  <div className="max-w-5xl mx-auto px-6">
+      {/* your recent posts */}
+        <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.6 }}
       >
-        <div className="border-t border-border pt-5 mb-5 text-center">
-        </div>
-        <p className="text-left text-muted-foreground text-[0.8rem] mb-8 tracking-widest uppercase mb-2">
+        {/* <div className="border-t border-border pt-5 mb-5 text-center">
+        </div> */}
+        <p className="text-center text-[1.8rem] mb-8 tracking-widest mb-2"> {/*text-muted-foreground uppercase */}
           {t("curatedLists")}
         </p>
       </motion.div>
-    
-
-
-      {/* RECENT POSTS */}
-      <div className="w-full max-w-5xl">
+            <div className="w-full max-w-5xl">
       <div className="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
 
           {/* {allLists.map((list) => ( */}
@@ -106,7 +103,8 @@ export default function Home() {
             <Link
               key={list.slug}
               to={`/${list.slug}`}
-              className="group min-w-[200px] rounded-2xl border border-border p-4 hover:shadow-md transition"
+              className="group min-w-[200px] rounded-2xl border border-border p-4 hover:shadow-md transition bg-white"
+
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3">
               <img
@@ -121,18 +119,27 @@ export default function Home() {
                 {list.items.length} picks
               </p>
 
-              <span className="inline-block mt-3 text-xl">
+              {/* <span className="inline-block mt-3 text-xl">
                 {list.emoji}
-              </span>
+              </span> */}
             </Link>
           ))}
 
         </div>
       </div>
+    </div>
+    
+  </section>
 
 
-         
-     {/* Quick Links */}
+  {/* LINKS */}
+  {/* <section className="sticky top-0 z-30 py-20"
+  style={{ background: "var(--background)" }}
+  > */}
+  <div className="max-w-xl mx-auto px-6">
+   
+
+      {/* your quick links */}
        <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -152,37 +159,17 @@ export default function Home() {
                 }
                 target={link.label === "Resume" ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 border border-border rounded-full text-[0.8rem] tracking-wide text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+                className="flex bg-white items-center gap-2 px-4 py-2.5 border border-border rounded-full text-[0.8rem] tracking-wide text-foreground hover:bg-foreground hover:text-background transition-all duration-300"
               >
                 <link.icon className="w-3.5 h-3.5" />
                 {link.label}
               </a>
             ))}
           </motion.div>
-          {/* Fun sign-off */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-16 p-6 rounded-xl border border-dashed border-border"
-          >
-            <p className="text-[0.85rem] text-muted-foreground italic" style={{ lineHeight: 1.7 }}>
-              "The best way to know a city is to eat, walk, read, and swim your way through it."
-            </p>
-            <p className="text-[0.75rem] text-muted-foreground mt-2">
-              — Me, justifying my hobbies
-            </p>
-          </motion.div> */}
-        </div>
-      {/* </section> */}
-
-      {/* Footer */}
-       <footer className="px-6 py-8 text-center">
-        <p className="text-[0.75rem] text-muted-foreground">
-          {t("footer")}
-        </p>
-      </footer>
-
     </div>
-  );
+  {/* </section> */}
+
+</div>)
+    
+
 }

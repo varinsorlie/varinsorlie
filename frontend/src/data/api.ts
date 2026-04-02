@@ -21,3 +21,17 @@ export async function getList(slug: string) {
 
   return res.json();
 }
+
+
+
+export async function getTravelTips() {
+  const res = await fetch(`${BASE_URL}/traveltips`)
+  if (!res.ok) throw new Error("Failed to fetch travel tips")
+  return res.json()
+}
+
+export async function getTravelTip(slug: string) {
+  const res = await fetch(`${BASE_URL}/traveltips/${slug}`)
+  if (!res.ok) throw new Error("Travel tip not found")
+  return res.json()
+}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Mail, Linkedin } from "lucide-react";
+import { Github, Mail, Linkedin, MapPin, Code2, BookOpen, Briefcase } from "lucide-react";
 import { motion } from "motion/react";
 // import { allLists } from "./list-data";
 import myImage1 from "../assets/IMG_5190.jpg"
@@ -7,11 +7,19 @@ import myImage2 from "../assets/IMG_5274.jpeg"
 import myImage3 from "../assets/IMG_4934.jpeg"
 import myImage4 from "../assets/IMG_4651.jpeg"
 
+import grid1 from "../assets/IMG_5010.jpeg"
+import grid2 from "../assets/shanghai.jpg"
+import grid3 from "../assets/beach.jpg"
+import grid4 from "../assets/sno.jpeg"
+
 import { useLanguage } from "./Layout.js";
 import { BouncyAvatar } from "./BouncyAvatar.js";
 
 import { useEffect, useState } from "react";
 import { getLists } from "../data/api.js";
+
+import retro from "../assets/test.jpeg"; 
+import sunset from "../assets/IMG_0638.jpeg"
 
 export default function Home() {
   const PROFILE_IMAGE = [myImage1, myImage2, myImage3, myImage4]
@@ -50,39 +58,93 @@ export default function Home() {
   return (
 <div className="min-h-screen">
 
-  {/* INTRO */}
-  <section 
-  className="sticky top-0 z-10 py-20"
-  style={{ background: "var(--background)" }}
->
-  <div className="max-w-xl mx-auto px-6 text-center">
-      {/* your intro content */}
-      <h1
-        className="text-[3rem] mb-4"
-        style={{ fontFamily: "'Gasoek One', serif", color: "var(--font-color)"}}
-      >
-        {t("greeting")}
-      </h1>
-      <div className="grid grid-cols-2 gap-4 place-items-center
-                      sm:flex sm:justify-center sm:gap-6 mb-16">
-        {PROFILE_IMAGE.map((src, i) => (
-          <BouncyAvatar key={i} src={src} />
-        ))}
-      </div>
 
-      <p className="text-muted-foreground italic mb-10"
-          style={{color: "var(--font-color)"}}>
-          {t("intro")}
-      </p>
+    {/* INTRO */}
+  <section 
+    className="py-20"
+    style={{ background: "var(--background)" }}
+  >
+      {/* Birthday Button */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.2, duration: 0.6 }}
+      className="mb-20"
+    >
+      <Link
+        to="/birthdayPage"
+
+        className="w-1/2 p-5 bg-gradient-to-r from-pink-500 
+        via-purple-500 to-pink-500 text-white font-bold text-xl 
+        sm:text-2xl py-6 sm:py-8 rounded-2xl hover:shadow-2xl 
+        hover:scale-105 transition-all duration-300 text-center animate-pulse"
+      >
+        🎉 Bursdags-bingo! 🎉
+      </Link>
+    </motion.div>
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        
+        {/* LEFT: Title */}
+        <div>
+          <h1
+            className="text-[2rem] sm:text-[3rem] md:text-[4rem] lg:text-[4rem] mb-8 leading-tight"
+            style={{  color: "var(--font-color)" }}
+          >
+            Vårin Sørlie
+          </h1>
+          
+          <p className="text-muted-foreground italic text-base pb-6"
+            style={{ color: "var(--font-color)" }}>
+            {t("intro")}
+          </p>
+
+        {/* Image 2 */}
+          <div className="break-inside-avoid">
+            <img src={grid2} alt="Placeholder 2" className="w-full h-auto object-cover" />
+            <p className="text-sm text-muted-foreground mt-2">Shanghai, China</p>
+          </div>
+        </div>
+
+        {/* RIGHT: Image grid */}
+        <div className="columns-2 gap-4 space-y-4">
+          {/* Image 1 */}
+          <div className="break-inside-avoid">
+            <img src={grid1} alt="Placeholder 1" className="w-full h-auto object-cover" />
+            <p className="text-sm text-muted-foreground mt-2">Jomfruslettfjell, Norway</p>
+          </div>
+
+          {/* Image 3 */}
+          <div className="break-inside-avoid">
+            <img src={grid3} alt="Placeholder 3" className="w-full h-auto object-cover" />
+            <p className="text-sm text-muted-foreground mt-2">Ko Lanta, Thailand</p>
+          </div>
+
+          {/* Image 4 */}
+          <div className="break-inside-avoid">
+            <img src={grid4} alt="Placeholder 4" className="w-full h-auto object-cover" />
+            <p className="text-sm text-muted-foreground mt-2">Gjøvik, Norway</p>
+          </div>
+        </div>
+        
+      </div>
     </div>
+    
   </section>
 
   {/* RECENT POSTS */}
   <section 
-   className="sticky top-0 z-20 py-20"
-  style={{ background: "var(--background2)" }}
+  className="sticky top-0 z-20 py-20 max-w items-center"
+        
 >
-  <div className="max-w-5xl mx-auto px-6">
+  <div className="mx-auto px-6 p-25 "
+  style={{ 
+          background: "var(--background2)",
+          backgroundImage: `url(${sunset})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}>
       {/* your recent posts */}
         <motion.div
         initial={{ opacity: 0 }}
@@ -91,32 +153,33 @@ export default function Home() {
       >
         {/* <div className="border-t border-border pt-5 mb-5 text-center">
         </div> */}
-        <p className="text-center text-[1.8rem] mb-8 tracking-widest mb-2"> {/*text-muted-foreground uppercase */}
+        <p className="text-left text-[1.0rem] mb-4 pl-2 tracking-widest mb-2"
+        style={{color: "var(--card)"}}> {/*text-muted-foreground uppercase */}
           {t("curatedLists")}
         </p>
       </motion.div>
-            <div className="w-full max-w-5xl">
-      <div className="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
+        <div className="w-full max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-4 pb-4">
 
           {/* {allLists.map((list) => ( */}
            {allLists.map((list) => (
             <Link
               key={list.slug}
               to={`/${list.slug}`}
-              className="group min-w-[200px] rounded-2xl border border-border p-4 hover:shadow-md transition bg-white"
+              className="rounded-xl overflow-hidden bg-white p-4 hover:shadow-md transition"
 
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3">
               <img
                 src={list.image}
-                className="w-full h-full object-cover group-hover:scale-105 transition"
+                  className="w-full h-full object-cover hover:scale-105 transition"
               />
             </div>
 
               <h3 className="text-sm mb-1">{list.title}</h3>
 
               <p className="text-xs text-muted-foreground">
-                {list.items.length} picks
+                {list.items.length} valgte
               </p>
 
               {/* <span className="inline-block mt-3 text-xl">
@@ -128,16 +191,60 @@ export default function Home() {
         </div>
       </div>
     </div>
-    
+
+      {/* ABOUT */}
+    <div className="bg-background rounded-2xl p-8">
+       
+        <ul className="space-y-4 sm:flex sm:justify-center ">
+          
+          <li className="text-left">
+            <h2 className="font-serif text-2xl mb-4">
+              {t("greeting2")}
+            </h2>
+           <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-muted-foreground" />
+                  <p className="font-medium">Oslo, Norway</p>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-muted-foreground" />
+                  <p className="font-medium">Computer Science, UiO</p>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <Code2 className="w-4 h-4 text-muted-foreground" />
+                  <p className="font-medium">Fullstack developer</p>
+                </div>
+              </div>
+               <p className="text-sm text-muted-foreground mt-4">
+                  {t("about")}
+              </p>
+          </li>
+          <li>
+             <div className="grid grid-cols-2 gap-4 place-items-center
+                      sm:flex sm:justify-center sm:gap-6 mb-16 pt-5">
+        {PROFILE_IMAGE.map((src, i) => (
+          <BouncyAvatar key={i} src={src} />
+        ))}
+      </div>
+          </li>
+        </ul>
+      </div>
+        {/* IMAGES */}
+
+   
   </section>
 
+
+ 
 
   {/* LINKS */}
   {/* <section className="sticky top-0 z-30 py-20"
   style={{ background: "var(--background)" }}
   > */}
   <div className="max-w-xl mx-auto px-6">
-   
+
 
       {/* your quick links */}
        <motion.div

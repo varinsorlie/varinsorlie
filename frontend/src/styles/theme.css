@@ -2,9 +2,10 @@
 
 :root {
   --font-size: 16px;
-  --background: #C6DCFF;
-  --background2: #ffdfa8;
-  --font-color:#0053D4;
+  --background: #ffffff;
+  --background2: #f5f0e8;
+  --font-color:#000000;
+  /* --font-color: #D14726; */
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
   --card-foreground: oklch(0.145 0 0);

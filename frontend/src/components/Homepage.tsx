@@ -63,24 +63,7 @@ export default function Home() {
     className="py-20"
     style={{ background: "var(--background)" }}
   >
-      {/* Birthday Button */}
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.2, duration: 0.6 }}
-      className="mb-20"
-    >
-      <Link
-        to="/birthdayPage"
-
-        className="w-1/2 p-5 bg-gradient-to-r from-pink-500 
-        via-purple-500 to-pink-500 text-white font-bold text-xl 
-        sm:text-2xl py-6 sm:py-8 rounded-2xl hover:shadow-2xl 
-        hover:scale-105 transition-all duration-300 text-center animate-pulse"
-      >
-        🎉 Bursdags-bingo! 🎉
-      </Link>
-    </motion.div>
+    
     <div className="max-w-6xl mx-auto px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         

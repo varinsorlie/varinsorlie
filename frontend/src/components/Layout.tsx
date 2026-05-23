@@ -83,7 +83,6 @@ export function Layout() {
           <NavItem to="/cvPage">Resume</NavItem>
           <NavItem to="/travelPage">Blog</NavItem>
 
-           <NavItem to="/energyQuizPage">Energy Quiz!</NavItem>
           {/* <NavItem to="/birthdayPage">Bursdag!</NavItem>
            <NavItem to="/mapPage">Map</NavItem> */}
         </div>

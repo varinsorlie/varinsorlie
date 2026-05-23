@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { getTravelTips } from "../data/api.js"
 import { getLists } from "../data/api.js"
+import { articles } from "../data/articles.js"
+import type { Article } from "../data/articles.js"
 
 // ── Types ──────────────────────────────────────────────────────
 interface Destination {
@@ -98,6 +100,23 @@ function TravelCard({ tip }: { tip: TravelTip }) {
       </Link>
     </div>
     </div>
+  )
+}
+function ArticleCard({ article }: { article: Article }) {
+  return (
+    <Link to={`/articles/${article.slug}`} className="overflow-hidden bg-white p-4">
+      {article.image1 && (
+        <div className="aspect-video overflow-hidden mb-3">
+          <img
+            src={article.image1}
+            alt={article.title}
+            className="w-full h-full object-cover hover:scale-105 transition"
+          />
+        </div>
+      )}
+      <h3 className="text-sm text-left mb-1 pl-2">{article.title}</h3>
+      <p className="text-left text-xs text-muted-foreground pl-2">{article.date}</p>
+    </Link>
   )
 }
 
@@ -202,6 +221,22 @@ export default function TravelPage() {
             ))}
           </div>
         </div>
+
+        {/* ARTICLES SECTION */}
+        <p className="text-left text-[0.7rem] tracking-[.22em] uppercase opacity-40 mb-3">
+          Artikler
+        </p>
+        {articles.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-4 pb-4">
+            {articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </div>
+        ) : (
+          <p className="font-serif italic text-black/30 text-lg mt-10">
+            Ingen artikler her ennå.
+          </p>
+        )}
 
       </div>
     </div>

@@ -8,7 +8,7 @@ import CVPage from "../components/CvPage.js";
 import TravelPage from "../components/TravelPage.js";
 import TravelDetailPage from "../components/TravelDetailPage.js";
 import BirthdayPage from "../components/BirthdayPage.js";
-import EnergyQuizPage from "../components/EnergyQuiz.js";
+import ArticleDetailPage from "../components/ArticleDetailPage.js";
 
 export const routes: RouteObject[] = [
   {
@@ -22,8 +22,8 @@ export const routes: RouteObject[] = [
       
       { path: "travelPage", Component: TravelPage},
       { path: "travel/:slug", Component: TravelDetailPage },
+      { path: "articles/:slug", Component: ArticleDetailPage },
       { path: "BirthdayPage", Component: BirthdayPage},
-      { path: "EnergyQuizPage", Component: EnergyQuizPage}
     ],
   },
 ];

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getTravelTip } from "../data/api.js"
+import { TopBar } from "./TopBar.js"
 
 // ── Types ──────────────────────────────────────────────────────
 interface Destination {
@@ -180,14 +181,20 @@ export default function TravelDetailPage() {
   }, [slug])
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading…</p>
+    <div className="min-h-screen">
+      <TopBar />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading…</p>
+      </div>
     </div>
   )
 
   if (error || !tip) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg">Travel tip not found.</p>
+    <div className="min-h-screen">
+      <TopBar />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg">Travel tip not found.</p>
+      </div>
     </div>
   )
 
@@ -202,6 +209,7 @@ export default function TravelDetailPage() {
 
   return (
     <div className="min-h-screen text-[#0d0d0d]" style={{ background: "var(--background)" }}>
+      <TopBar backTo="/travelPage" backLabel="Back to blog" />
       <div className="max-w-3xl mx-auto px-6 pt-12 pb-24">
 
         {/* TITLE */}
@@ -217,13 +225,13 @@ export default function TravelDetailPage() {
           <>
             <SectionHeading>Foto album</SectionHeading>
             <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
-              {tip.photos!.map((_url, i) => (
+              {tip.photos?.map((url, i) => (
                 <div key={i} className="aspect-[4/3] overflow-hidden bg-black/5 shrink-0 w-64">
-                  {/* <img
+                  <img
                     src={url}
                     alt={`Photo ${i + 1}`}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  /> */}
+                  />
                 </div>
               ))}
             </div>
@@ -363,16 +371,15 @@ export default function TravelDetailPage() {
         {(overview?.apps?.length ?? 0) > 0 && (
           <>
             <SectionHeading>Smarte apper</SectionHeading>
-            <p> Kommer snart ...</p>
-            {/* <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
-              {overview!.apps!.map(item => (
+            <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
+              {overview?.apps?.map(item => (
                 <div key={item.id} className="flex items-start gap-4 py-4">
                   <div className="w-9 h-9 rounded-xl bg-black/5 flex items-center justify-center text-base shrink-0">📱</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-sm font-medium">{item.name}</span>
                       {item.free && (
-                        <span className="text-[0.6rem] tracking-wide uppercase bg-black/5 text-black/35 px-2 py-0.5 rounded-full">Free</span>
+                        <span className="text-[0.6rem] tracking-wide uppercase bg-black/5 text-black/35 px-2 py-0.5 rounded-full">Gratis</span>
                       )}
                     </div>
                     <p className="text-xs text-black/45 leading-relaxed">{item.description}</p>
@@ -380,16 +387,15 @@ export default function TravelDetailPage() {
                   </div>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         )}
 
         {(overview?.cafes?.length ?? 0) > 0 && (
           <>
             <SectionHeading>Kaféer</SectionHeading>
-             <p> Kommer snart ...</p>
-            {/* <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
-              {overview!.cafes!.map(item => (
+            <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
+              {overview?.cafes?.map(item => (
                 <div key={item.id} className="flex items-start justify-between gap-4 py-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
@@ -402,16 +408,15 @@ export default function TravelDetailPage() {
                   <span className="text-xs text-black/25 shrink-0">{item.priceRange}</span>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         )}
 
         {(overview?.restaurants?.length ?? 0) > 0 && (
           <>
             <SectionHeading>Restauranter</SectionHeading>
-             <p> Kommer snart ...</p>
-            {/* <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
-              {overview!.restaurants!.map(item => (
+            <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
+              {overview?.restaurants?.map(item => (
                 <div key={item.id} className="flex items-start justify-between gap-4 py-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
@@ -424,16 +429,15 @@ export default function TravelDetailPage() {
                   <span className="text-xs text-black/25 shrink-0">{item.priceRange}</span>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         )}
 
         {(overview?.shopping?.length ?? 0) > 0 && (
           <>
             <SectionHeading>Shopping</SectionHeading>
-             <p> Kommer snart ...</p>
-            {/* <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
-              {overview!.shopping!.map(item => (
+            <div className="bg-white rounded-2xl border border-black/8 px-5 divide-y divide-black/5">
+              {overview?.shopping?.map(item => (
                 <div key={item.id} className="flex items-start justify-between gap-4 py-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
@@ -446,7 +450,7 @@ export default function TravelDetailPage() {
                   <span className="text-xs text-black/25 shrink-0">{item.priceRange}</span>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         )}
 

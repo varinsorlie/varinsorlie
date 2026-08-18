@@ -4,6 +4,7 @@ import { getTravelTips } from "../data/api.js"
 import { getLists } from "../data/api.js"
 import { articles } from "../data/articles.js"
 import type { Article } from "../data/articles.js"
+import { TopBar } from "./TopBar.js"
 
 // ── Types ──────────────────────────────────────────────────────
 interface Destination {
@@ -144,22 +145,36 @@ export default function TravelPage() {
     return t.destination?.region === activeFilter
   })
 
-  const gridTips = filtered.filter(t => t._id)
+  // Dedupe by slug — if the same trip ever comes back twice from the API
+  // (e.g. a duplicated record, or a double-fetch in dev), only render it once.
+  const seenSlugs = new Set<string>()
+  const gridTips = filtered.filter(t => {
+    if (!t._id || !t.slug || seenSlugs.has(t.slug)) return false
+    seenSlugs.add(t.slug)
+    return true
+  })
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading trips…</p>
+    <div className="min-h-screen">
+      <TopBar />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading trips…</p>
+      </div>
     </div>
   )
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg">Could not load travel tips.</p>
+    <div className="min-h-screen">
+      <TopBar />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg">Could not load travel tips.</p>
+      </div>
     </div>
   )
 
   return (
     <div className="min-h-screen text-[#0d0d0d]" >
+      <TopBar />
       <div className="max-w-5xl mx-auto px-6 pt-15 pb-24">
 
         {/* HEADER */}

@@ -6,6 +6,7 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.js";
 
 import { getList } from "../data/api.js";
+import { TopBar } from "./TopBar.js";
 
 const mapsUrl = (address: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
@@ -40,8 +41,18 @@ export function ListPage() {
   }, [list, activeFilter]);
 
   // ✅ Now it's safe to return early
-  if (loading) return <p>Loading...</p>;
-  if (!list) return <p>List not found</p>;
+  if (loading) return (
+    <div className="min-h-screen">
+      <TopBar backTo="/travelPage" backLabel="Back to blog" />
+      <p>Loading...</p>
+    </div>
+  );
+  if (!list) return (
+    <div className="min-h-screen">
+      <TopBar backTo="/travelPage" backLabel="Back to blog" />
+      <p>List not found</p>
+    </div>
+  );
 
   const hasTable =
     !!list.tableColumns &&
@@ -84,6 +95,8 @@ export function ListPage() {
   }
 
   return (
+    <div className="min-h-screen">
+    <TopBar backTo="/travelPage" backLabel="Back to blog" />
     <div className="max-w-2xl mx-auto px-1 py-1 md:py-1">
       {/* Hero Image */}
       <motion.div
@@ -620,6 +633,7 @@ export function ListPage() {
             ))}
         </div>
       </motion.div> */}
+    </div>
     </div>
   );
 }

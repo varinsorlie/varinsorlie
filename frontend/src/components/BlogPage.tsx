@@ -2,11 +2,15 @@ import { motion } from "motion/react";
 import { allLists } from "./list-data.js";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { TopBar } from "./TopBar.js";
 
 export default function Blog() {
     return (
         <div className="min-h-screen flex flex-col items-center ">
-            
+            <div className="w-full">
+              <TopBar />
+            </div>
+
         {/* Divider */}
             <motion.div
                 initial={{ opacity: 0 }}

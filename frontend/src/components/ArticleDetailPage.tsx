@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { articles } from "../data/articles.js"
+import { TopBar } from "./TopBar.js"
 
 // Single-line short blocks are section headers; everything else is a paragraph
 function renderContent(text: string) {
@@ -41,19 +42,26 @@ export default function ArticleDetailPage() {
   }, [slug])
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading…</p>
+    <div className="min-h-screen">
+      <TopBar backTo="/travelPage" backLabel="Back to blog" />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg animate-pulse">Loading…</p>
+      </div>
     </div>
   )
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="font-serif italic text-black/30 text-lg">Could not load article.</p>
+    <div className="min-h-screen">
+      <TopBar backTo="/travelPage" backLabel="Back to blog" />
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="font-serif italic text-black/30 text-lg">Could not load article.</p>
+      </div>
     </div>
   )
 
   return (
     <div className="min-h-screen text-[#0d0d0d]">
+     <TopBar backTo="/travelPage" backLabel="Back to blog" />
       <div className="max-w-2xl mx-auto px-6 pt-15 pb-24 text-left">
 
         {(article?.image1 || article?.image2 || article?.image3) && (

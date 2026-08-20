@@ -9,12 +9,15 @@ export default function AboutIntro() {
   return (
     <section
       id="about"
-      className="scroll-mt-24 py-24 border-t border-border"
+      // background-attachment: fixed is broken on most mobile browsers
+      // (iOS Safari especially) — it repaints against the wrong viewport as
+      // the browser chrome resizes, causing stretching/jumping. Keep it
+      // scroll on phones, fixed (the parallax look) from sm: up.
+      className="scroll-mt-24 py-24 border-t border-border bg-scroll sm:bg-fixed"
       style={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.13)), url(${grid1})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
       <div className="max-w-6xl mx-auto px-6">

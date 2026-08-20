@@ -34,12 +34,13 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="scroll-mt-24 py-20"
+      // background-attachment: fixed is broken on most mobile browsers
+      // (iOS Safari especially) — keep it scroll on phones, fixed from sm: up.
+      className="scroll-mt-24 py-20 bg-scroll sm:bg-fixed"
       style={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), url(${sunset})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
       <div className="max-w-5xl mx-auto px-6">
